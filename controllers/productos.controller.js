@@ -1,25 +1,63 @@
-const getAll = (req, res) => {
-    res.send('GET ALL')
+import models from '../models/productos.model.js'
+
+const getAll = async (req, res) => {
+
+    try {
+        const productos = await models.obtenerTodosLosProductos()
+        res.json(productos)
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ mensaje: 'No se pudieron obtener los productos solicitados' })
+        
+    }
+
 }
-const getOne = (req, res) => {
+const getOne = async (req, res) => {
     const id = req.params.id
-    res.send('GET ONE')
+    try {
+        const producto = await models.obtenerUnProducto(id)
+        res.json(producto)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ mensaje: 'No se pudo obtener el producto solicitado' })
+    }
+
 }
 
-const create = (req, res) => {
+const create = async (req, res) => {
     const productoACrear = req.body
-    res.send('CREATE producto')
+
+    try {
+        const productoGuardado = await models.crearUnProducto(productoACrear)
+        res.json(productoGuardado)
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ mensaje: 'Algo fallo, no se pudo guardar el producto' })
+    }
+
 }
 
 const update = (req, res) => {
     const id = req.params.id
     const productoAEditar = req.body
+    models.editarUnProducto()
     res.send('UPDATE producto')
 }
 
-const remove = (req, res) => {
+const remove = async (req, res) => {
     const id = req.params.id
-    res.send('DELETED producto')
+
+    try {
+        const productoEliminado = await models.eliminarProducto(id)
+        res.json(productoEliminado)
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ mensaje: 'No se pudo eliminar el producto' })
+    }
+
 }
 
 export default {
