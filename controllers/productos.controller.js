@@ -39,11 +39,19 @@ const create = async (req, res) => {
 
 }
 
-const update = (req, res) => {
+const update = async (req, res) => {
     const id = req.params.id
     const productoAEditar = req.body
-    models.editarUnProducto()
-    res.send('UPDATE producto')
+    productoAEditar.id = id
+
+    try {
+        const productoEditado = await models.editarUnProducto(productoAEditar)
+        res.json(productoEditado)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ mensaje: 'No se pudo editar el producto' })
+    }
+
 }
 
 const remove = async (req, res) => {
