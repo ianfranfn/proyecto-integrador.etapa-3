@@ -1,19 +1,27 @@
 import express from 'express'
 import 'dotenv/config'
+import path from 'path'
+import cors from 'cors'
 import connection from './utils/connection.js'
 import routerProductos from './routers/productos.router.js'
 import routerCarrito from './routers/carrito.router.js'
 import routerUpload from './routers/upload.router.js'
-import path from 'path'
 
 // ! constantes
 const app = express()
 const PORT = 8080
 const URI_DB = process.env.URI_LOCAL
+const URL_FRONT = process.env.URL_FRONTEND_CORS
+
+// ! configuraciones
+const corsConfig = {
+    origin: URL_FRONT // url a mi front-end | dev: http://localhost:5173
+}
 
 // ! middlewares
 app.use(express.json())
 app.use(express.static(path.join('public')))
+app.use(cors(corsConfig)) // Si solo pongo cors() sin agregarle el '(corsConfig)' todas las urls podran acceder a mi api, pero si le paso el corsConfig solo la url que yo le pase podra acceder a mi api. 
 
 // ! Rutas
 app.use('/api/v1/productos', routerProductos)
