@@ -4,6 +4,7 @@ import connection from './utils/connection.js'
 import routerProductos from './routers/productos.router.js'
 import routerCarrito from './routers/carrito.router.js'
 import routerUpload from './routers/upload.router.js'
+import path from 'path'
 
 // ! constantes
 const app = express()
@@ -12,6 +13,7 @@ const URI_DB = process.env.URI_LOCAL
 
 // ! middlewares
 app.use(express.json())
+app.use(express.static(path.join('public')))
 
 // ! Rutas
 app.use('/api/v1/productos', routerProductos)
