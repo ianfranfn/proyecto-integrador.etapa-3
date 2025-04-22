@@ -30,7 +30,7 @@ const create = async (req, res) => {
 
     try {
         const productoGuardado = await models.crearUnProducto(productoACrear)
-        res.json(productoGuardado)
+        res.status(201).json(productoGuardado)
         
     } catch (error) {
         console.log(error);
