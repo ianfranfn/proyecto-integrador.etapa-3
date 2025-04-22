@@ -2,6 +2,7 @@ import express from 'express'
 import 'dotenv/config'
 import connection from './utils/connection.js'
 import routerProductos from './routers/productos.router.js'
+import routerCarrito from './routers/carrito.router.js'
 
 // ! constantes
 const app = express()
@@ -16,6 +17,7 @@ app.use(express.json())
 
 // ! Rutas
 app.use('/api/v1/productos', routerProductos)
+app.use('/api/v1/carrito', routerCarrito)
 
 app.get('/', (req, res) => {
     res.send('Hola mundo')
