@@ -35,7 +35,7 @@ const carritoEsquema = new mongoose.Schema(
     },
     {
         timestamps: true,
-        versionkey: false
+        versionKey: false
     }
 )
 
