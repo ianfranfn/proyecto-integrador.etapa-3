@@ -7,7 +7,7 @@ const handleMongoId = (elemento) => {
 
         for (let i = 0; i < elemento.length; i++) {
             elemento[i].id = elemento[i][clave]
-            delete elemento[id][clave]
+            delete elemento[i][clave]
         }
     } else {
         console.log('Llego un documento');
