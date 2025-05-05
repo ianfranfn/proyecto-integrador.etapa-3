@@ -18,7 +18,7 @@ const getOne = async (req, res) => {
     const id = req.params.id
     try {
         const producto = await models.obtenerUnProducto(id)
-        res.json(producto)
+        res.json(handleMongoId(producto))
     } catch (error) {
         console.log(error)
         res.status(500).json({ mensaje: 'No se pudo obtener el producto solicitado' })
@@ -31,7 +31,7 @@ const create = async (req, res) => {
 
     try {
         const productoGuardado = await models.crearUnProducto(productoACrear)
-        res.status(201).json(productoGuardado)
+        res.status(201).json(handleMongoId(productoGuardado))
         
     } catch (error) {
         console.log(error);
@@ -47,7 +47,7 @@ const update = async (req, res) => {
 
     try {
         const productoEditado = await models.editarUnProducto(productoAEditar)
-        res.json(productoEditado)
+        res.json(handleMongoId(productoEditado))
     } catch (error) {
         console.log(error)
         res.status(500).json({ mensaje: 'No se pudo editar el producto' })
@@ -60,7 +60,7 @@ const remove = async (req, res) => {
 
     try {
         const productoEliminado = await models.eliminarProducto(id)
-        res.json(productoEliminado)
+        res.json(handleMongoId(productoEliminado))
         
     } catch (error) {
         console.log(error)
