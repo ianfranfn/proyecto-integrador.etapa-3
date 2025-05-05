@@ -2,14 +2,19 @@ import mongoose from "mongoose"
 
 
 const carritoSchema = mongoose.Schema({
-    carrito: Array  
-})
+    carrito: Array
+}, 
+{
+    timestamps: true,
+    versionKey: false
+}
+)
 
 const carritoModel = mongoose.model('carrito', carritoSchema)
 
 const crearCarrito = async (carrito) => {
     try {
-        const carritoCreado = new carritoModel({carrito})
+        const carritoCreado = new carritoModel(carrito)
         const carritoGuardado = await carritoCreado.save()
 
         return carritoGuardado
@@ -17,4 +22,8 @@ const crearCarrito = async (carrito) => {
         throw error
         
     }
+}
+
+export default {
+    crearCarrito
 }
