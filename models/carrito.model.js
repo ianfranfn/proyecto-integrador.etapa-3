@@ -1,72 +1,20 @@
-import mongoose from "mongoose";
+import mongoose from "mongoose"
 
-const carritoEsquema = new mongoose.Schema(
-    {
-        nombre: {
-           type: String,
-           required: true
-        },
-        foto: {
-            type: String,
-            required: true
-         },
-        descripcion: {
-            type: String,
-            required: true
-         },
-        precio: {
-            type: Number,
-            required: true
-         },
-        stock: {
-            type: Number,
-            required: true
-         },
-        marca: String,
-        categoria: {
-            type: String,
-            required: true
-         },
-        detalles:{
-            type: String,
-            required: true
-         },
-        envio: Boolean
-    },
-    {
-        timestamps: true,
-        versionKey: false
-    }
-)
 
-const carritoModelo = mongoose.model('carrito', carritoEsquema)
+const carritoSchema = mongoose.Schema({
+    carrito: Array  
+})
 
-const obtenerTodosLosProductos = () => {
+const carritoModel = mongoose.model('carrito', carritoSchema)
 
-}
-const obtenerUnProducto = () => {
-
-}
-const crearUnProducto = async (nuevoProducto) => {
+const crearCarrito = async (carrito) => {
     try {
-        const productoACrear = new carritoModelo(nuevoProducto)
-        const productoCreado = await productoACrear.save()
-        return productoCreado
+        const carritoCreado = new carritoModel({carrito})
+        const carritoGuardado = await carritoCreado.save()
+
+        return carritoGuardado
     } catch (error) {
         throw error
+        
     }
-}
-const editarUnProducto = () => {
-
-}
-const eliminarProducto = () => {
-
-}
-
-export default {
-    obtenerTodosLosProductos,
-    obtenerUnProducto,
-    crearUnProducto,
-    editarUnProducto,
-    eliminarProducto
 }
