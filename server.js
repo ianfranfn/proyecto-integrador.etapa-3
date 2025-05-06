@@ -15,7 +15,7 @@ const URL_FRONT = process.env.URL_FRONTEND_CORS
 
 // ! configuraciones
 const corsConfig = {
-    origin: URL_FRONT // url a mi front-end | dev: http://localhost:5173
+    origin: URL_FRONT 
 }
 
 // ! middlewares

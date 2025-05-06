@@ -8,12 +8,12 @@ const routerProductos = express.Router()
 
 routerProductos.get('/', productosController.getAll)
 
-routerProductos.get(':id', productosController.getOne)
+routerProductos.get('/:id', productosController.getOne)
 
 routerProductos.post('/', productosController.create)
 
-routerProductos.put(':id', productosController.update)
+routerProductos.put('/:id', productosController.update)
 
-routerProductos.delete(':id', productosController.remove)
+routerProductos.delete('/:id', productosController.remove)
 
 export default routerProductos
