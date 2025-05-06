@@ -7,4 +7,6 @@ La mayoria del código escrito fue estudidado en clase, pero también tuve una p
 
 Nombre: Ian Franco Fariña Núñez
 Github: https://github.com/ianfranfn/proyecto-integrador.etapa-3.git
-Netlify: https://proyecto-integrador-etapa2-ian.netlify.app/
+Netlify: https://proyecto-integrador-etapa3.netlify.app/
+Render: https://proyecto-integrador-etapa-3-pvri.onrender.com
+Mongo Atlas: mongodb+srv://ianfarina9:Za0icAipFJlpEMXC@proyectobootcamp.v0vnvgf.mongodb.net/proy-int_etapa3?retryWrites=true&w=majority&appName=proyectoBootcamp
