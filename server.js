@@ -5,7 +5,7 @@ import cors from 'cors'
 import connection from './utils/connection.js'
 import routerProductos from './routers/productos.router.js'
 import routerCarrito from './routers/carrito.router.js'
-import routerUpload from './routers/upload.router.js'
+import routerUpload from './routers/uploads.router.js'
 
 // ! constantes
 const app = express()
