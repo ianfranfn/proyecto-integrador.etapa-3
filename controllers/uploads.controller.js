@@ -1,10 +1,11 @@
+
 const uploadImagen = (req, res) => {
     const imagen = req.file
-    console.log(imagen);
+    console.log(imagen)
 
     if (!imagen) {
-        res.status(400).json({
-            mensaje: 'No se cargo la imagen necesaria'
+        return res.status(400).json({
+            mensaje: 'No se cargó la imagen necesaria'
         })
     }
 
@@ -13,9 +14,10 @@ const uploadImagen = (req, res) => {
     res.status(201).json({
         foto: urlCompletaBack
     })
-    
+
 }
 
 export default {
     uploadImagen
 }
+

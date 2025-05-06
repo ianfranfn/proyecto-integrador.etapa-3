@@ -1,19 +1,17 @@
 import models from '../models/productos.model.js'
-import handleMongoId from '../utils/handle-mongo-id.js';
+import handleMongoId from '../utils/handle-mongo-id.js'
+
 
 const getAll = async (req, res) => {
-
     try {
         const productos = await models.obtenerTodosLosProductos()
         res.json(handleMongoId(productos))
-        
     } catch (error) {
-        console.log(error);
-        res.status(500).json({ mensaje: 'No se pudieron obtener los productos solicitados' })
-        
+        console.log(error)
     }
 
 }
+
 const getOne = async (req, res) => {
     const id = req.params.id
     try {
@@ -21,9 +19,8 @@ const getOne = async (req, res) => {
         res.json(handleMongoId(producto))
     } catch (error) {
         console.log(error)
-        res.status(500).json({ mensaje: 'No se pudo obtener el producto solicitado' })
+        res.status(500).json({ mensaje: 'No se pudo obtener el producto solicitado'})
     }
-
 }
 
 const create = async (req, res) => {
@@ -32,12 +29,12 @@ const create = async (req, res) => {
     try {
         const productoGuardado = await models.crearUnProducto(productoACrear)
         res.status(201).json(handleMongoId(productoGuardado))
-        
     } catch (error) {
-        console.log(error);
-        res.status(500).json({ mensaje: 'Algo fallo, no se pudo guardar el producto' })
+        console.log(error)
+        res.status(500).json({ mensaje: 'Algo falló, no se pudo guardar el producto'})
     }
 
+    
 }
 
 const update = async (req, res) => {
@@ -50,7 +47,7 @@ const update = async (req, res) => {
         res.json(handleMongoId(productoEditado))
     } catch (error) {
         console.log(error)
-        res.status(500).json({ mensaje: 'No se pudo editar el producto' })
+        res.status(500).json({ mensaje: 'No se pudo editar el producto solicitado'})
     }
 
 }
@@ -61,13 +58,13 @@ const remove = async (req, res) => {
     try {
         const productoEliminado = await models.eliminarProducto(id)
         res.json(handleMongoId(productoEliminado))
-        
     } catch (error) {
         console.log(error)
-        res.status(500).json({ mensaje: 'No se pudo eliminar el producto' })
+        res.status(500).json({ mensaje: 'No se pudo borrar el producto'})
     }
 
 }
+
 
 export default {
     getAll,

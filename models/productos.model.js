@@ -1,74 +1,49 @@
-import mongoose from "mongoose";
+import mongoose from "mongoose"
 
-const productosEsquema = mongoose.Schema(
+const ProductoEsquema = mongoose.Schema(
     {
         nombre: {
-           type: String,
-           required: true
+            type: String,
+            required: true
         },
-        foto: {
-            type: String,
-            required: true
-         },
-        descripcion: {
-            type: String,
-            required: true
-         },
-        precio: {
-            type: Number,
-            required: true
-         },
-        stock: {
-            type: Number,
-            required: true
-         },
+        precio: Number,
+        stock: Number,
         marca: String,
-        categoria: {
-            type: String,
-            required: true
-         },
-        detalles:{
-            type: String,
-            required: true
-         },
+        categoria: String,
+        detalles: String,
+        foto: String,
         envio: Boolean
     },
     {
-        timestamps: true,
+        timestamps: true, 
         versionKey: false
     }
 )
 
-const productoModelo = mongoose.model('productos', productosEsquema)
-
+const ProductoModelo = mongoose.model('productos', ProductoEsquema)
 
 const obtenerTodosLosProductos = async () => {
-    console.log('obtenerTodosLosProductos');
-
     try {
-        const productos = await productoModelo.find()
+        const productos = await ProductoModelo.find()
         return productos
     } catch (error) {
         throw error
     }
-
-    
 }
 
 const obtenerUnProducto = async (id) => {
     try {
-        const producto = await productoModelo.findById(id)
+        const producto = await ProductoModelo.findById(id)
         return producto
     } catch (error) {
         throw error
     }
-    
 }
 
 const crearUnProducto = async (productoNuevo) => {
     try {
-        const productoCreado = new productoModelo(productoNuevo)
-        const productoGuardado = await productoCreado.save()
+        const productoAGuardar = new ProductoModelo(productoNuevo)
+        const productoGuardado = await productoAGuardar.save()
         return productoGuardado
     } catch (error) {
         throw error
@@ -78,7 +53,7 @@ const crearUnProducto = async (productoNuevo) => {
 const editarUnProducto = async (productoAEditar) => {
     try {
         const options = { new: true }
-        const productoEditado = await productoModelo.findByIdAndUpdate(productoAEditar.id, productoAEditar, options)
+        const productoEditado = await ProductoModelo.findByIdAndUpdate(productoAEditar.id, productoAEditar, options)
         return productoEditado
     } catch (error) {
         throw error
@@ -87,7 +62,7 @@ const editarUnProducto = async (productoAEditar) => {
 
 const eliminarProducto = async (id) => {
     try {
-        const productoEliminado = await productoModelo.findByIdAndDelete(id)
+        const productoEliminado = await ProductoModelo.findByIdAndDelete(id)
         return productoEliminado
     } catch (error) {
         throw error
